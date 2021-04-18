@@ -4,6 +4,7 @@ import Input from "react-validation/build/input";
 import CheckButton from "react-validation/build/button";
 import { isEmail } from "validator";
 import { Link } from 'react-router-dom'
+import { useHistory } from 'react-router-dom';
 import {
   CButton,
   CCard,
@@ -57,6 +58,7 @@ const vpassword = (value) => {
 const Register = (props) => {
   const form = useRef();
   const checkBtn = useRef();
+  const history = useHistory();
 
   const [name, setName] = useState("");
   const [medium, setMedium] = useState("");
@@ -112,6 +114,7 @@ const Register = (props) => {
         (response) => {
           setMessage(response.data.message);
           setSuccessful(true);
+          history.push({pathname:'confirmcode', state:{medium, email, phone}})
         },
         (error) => {
           const resMessage =

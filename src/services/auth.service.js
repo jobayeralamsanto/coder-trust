@@ -17,8 +17,8 @@ const login = (medium,email,phone, password) => {
   return axios
     .post(API_URL + "signin", {
       medium,
-      email,
       phone,
+      email,
       password,
     })
     .then((response) => {
@@ -43,10 +43,38 @@ const verifyUser = (code) => {
   });
 };
 
+const confirmationCodeValidity = (medium, email, phone) => {
+  return axios.post(API_URL + 'get-confirmation-code-validity', {
+    medium,
+    email,
+    phone
+  })
+}
+
+const resendConfirmationCode = (medium, email, phone) => {
+  return axios.post(API_URL + 'resend-confirmation-code', {
+    medium,
+    email,
+    phone
+  })
+}
+
+const confirmSignup = (medium, email, phone, confirmationCode) => {
+  return axios.post(API_URL + 'confirm-signup', {
+    medium,
+    email,
+    phone,
+    confirmationCode
+  })
+}
+
 export default {
   register,
   login,
   logout,
   getCurrentUser,
   verifyUser,
+  confirmationCodeValidity,
+  resendConfirmationCode,
+  confirmSignup
 };

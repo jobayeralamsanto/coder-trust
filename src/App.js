@@ -14,6 +14,8 @@ import BoardModerator from "./components/BoardModerator";
 import BoardAdmin from "./components/BoardAdmin";
 import Welcome from "./components/Welcome";
 import Forgetpassword from "./components/Forgetpassword";
+import ConfirmationCode from "./components/ConfirmationCode";
+import ConfirmSignup from "./components/ConfirmSignup";
 
 const App = () => {
   const [showModeratorBoard, setShowModeratorBoard] = useState(false);
@@ -47,6 +49,8 @@ const App = () => {
           <Route path="/mod" component={BoardModerator} />
           <Route path="/admin" component={BoardAdmin} />
           <Route path="/confirm/:confirmationCode" component={Welcome} />
+          <Route path="/confirmcode" component={ConfirmationCode} />
+          <Route path="/confirm-signup" component={ConfirmSignup} />
         </Switch>
       </div>
     

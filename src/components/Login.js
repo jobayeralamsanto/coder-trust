@@ -13,7 +13,7 @@ import {
 
 import AuthService from "../services/auth.service";
 
- 
+
  
    
 const required = (value) => {
@@ -40,7 +40,7 @@ const Login = (props) => {
   const [myProfession, setMyProfession] = useState("");
 
   
-
+  console.log(myProfession);
   const onChangeMedium = (e) => {
     const medium = e.target.value;
     setMedium(medium);
@@ -70,7 +70,7 @@ const onChangePassword = (e) => {
     form.current.validateAll();
 
     if (checkBtn.current.context._errors.length === 0) {
-      AuthService.login(medium,phone,email,password).then(
+      AuthService.login(myProfession, phone, email, password).then(
         () => {
           props.history.push("/profile");
           window.location.reload();

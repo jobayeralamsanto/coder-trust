@@ -16,6 +16,7 @@
     "react-notify-toast": "^0.5.1",
     "react-router-dom": "^5.2.0",
     "react-scripts": "3.4.1",
+    "react-toastify": "^7.0.3",
     "react-validation": "^3.0.7",
     "validator": "^13.0.0"
   },
