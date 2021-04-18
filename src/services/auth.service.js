@@ -13,7 +13,7 @@ const register = (name,medium,email, phone, password,role) => {
   });
 };
 
-const login = (medium,email,phone, password) => {
+const login = (medium, phone, email, password) => {
   return axios
     .post(API_URL + "signin", {
       medium,
@@ -22,6 +22,7 @@ const login = (medium,email,phone, password) => {
       password,
     })
     .then((response) => {
+      console.log(response);
       if (response.data.accessToken) {
         localStorage.setItem("user", JSON.stringify(response.data));
       }

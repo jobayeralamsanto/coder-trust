@@ -70,9 +70,9 @@ const onChangePassword = (e) => {
     form.current.validateAll();
 
     if (checkBtn.current.context._errors.length === 0) {
-      AuthService.login(myProfession, phone, email, password).then(
-        () => {
-          props.history.push("/profile");
+      AuthService.login(myProfession, phone, email, password).then(data => {
+        console.log(data);
+          props.history.push("/home");
           window.location.reload();
         },
         (error) => {

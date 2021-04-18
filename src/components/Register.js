@@ -70,7 +70,8 @@ const Register = (props) => {
   const [message, setMessage] = useState("");
   const professions = ["email", "phone"];
   const [myProfession, setMyProfession] = useState("");
-
+  const [loading, setLoading] = useState(false);
+ 
   const onChangeName = (e) => {
     const name = e.target.value;
     setName(name);
@@ -103,6 +104,7 @@ const Register = (props) => {
 
   const handleRegister = (e) => {
     e.preventDefault();
+    setLoading(true);
 
     setMessage("");
     setSuccessful(false);
@@ -123,6 +125,7 @@ const Register = (props) => {
               error.response.data.message) ||
             error.message ||
             error.toString();
+            setLoading(true);
 
           setMessage(resMessage);
           setSuccessful(false);
@@ -241,8 +244,13 @@ const Register = (props) => {
               </div>
 
               <div className="form-group">
-                <button className="btn btn-primary btn-block">Sign Up</button>
-              </div>
+            <button className="btn btn-primary btn-block" disabled={loading}>
+              {loading && (
+                <span className="spinner-border spinner-border-sm"></span>
+              )}
+              <span>Sign Up</span>
+            </button>
+          </div>
             </div>
           )}
 

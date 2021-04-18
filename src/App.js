@@ -44,13 +44,13 @@ const App = () => {
           <Route exact path="/home" component={Home} />
           <Route exact path="/register" component={Register} />
           <Route exact path="/forgetpassword" component={Forgetpassword} />
-          <Route exact path={["/profile", ]} component={Profile} />
+          {/* <Route exact path={["/profile", ]} component={Profile} /> */}
           <Route path="/user" component={BoardUser} />
           <Route path="/mod" component={BoardModerator} />
           <Route path="/admin" component={BoardAdmin} />
           <Route path="/confirm/:confirmationCode" component={Welcome} />
           <Route path="/confirmcode" component={ConfirmationCode} />
-          <Route path="/confirm-signup" component={ConfirmSignup} />
+          <Route path="/profile" component={ConfirmSignup} />
         </Switch>
       </div>
     

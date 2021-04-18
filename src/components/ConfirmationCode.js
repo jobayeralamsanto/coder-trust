@@ -19,7 +19,7 @@ function ConfirmationCode({state}) {
     }, [second])
 
 
-    /*useEffect(() => {
+    useEffect(() => {
         AuthService.confirmationCodeValidity(medium, email, phone)
         .then(data => {
             toast.success(data.data.message, {
@@ -27,11 +27,16 @@ function ConfirmationCode({state}) {
                 autoClose: 3000
             });
         })
-        .catch(err => toast.error(err.response.data.message, {
-            position: toast.POSITION.TOP_RIGHT, 
-            autoClose: 3000
-        }));
-    }, []);*/
+        .catch(err => {
+            toast.error(err.response.data.message, {
+                position: toast.POSITION.TOP_RIGHT, 
+                autoClose: 3000
+            });
+            if (err.response.data.message === 'Confirmation code has expired!'){
+                setSecond(0);
+            }
+        });
+    }, []);
 
     const codeResend = () => {
         AuthService.resendConfirmationCode(medium, email, phone)
@@ -74,9 +79,9 @@ function ConfirmationCode({state}) {
         <div>
             <div className="jumbotron">
                 <h2 className="display-4">Please check your device</h2>
-                <p className="lead">A confirmation link sent to your {medium} <strong className="text-warning">OR</strong></p>
+                <p className="lead">A confirmation link sent to your {medium}</p>
                 <hr className="my-4" />
-                <div className="input-group mb-3">
+                {medium === 'phone' ? <div className="input-group mb-3">
                     <div className="input-group-prepend">
                         <span className="input-group-text" id="inputGroup-sizing-default">Code Sent to you</span>
                     </div>
@@ -89,14 +94,14 @@ function ConfirmationCode({state}) {
                                 setCode(e.target.value)
                             }
                         }} value={code} type="text" className="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default" />
-                </div>
+                </div> : null}
                 <div className="row">
                     <div className="col d-flex justify-content-start">
-                        <button disabled={second} onClick={codeResend} className="btn btn-primary lead">Resend link  {second > 0? `in ${second}`: null}</button>
+                        <button disabled={second} onClick={codeResend} className="btn btn-primary lead">Resend {medium == 'email' ? 'link': 'code'}  {second > 0? `in ${second}`: null}</button>
                     </div>
-                    <div className="col d-flex justify-content-end">
+                    {medium === 'phone' ? <div className="col d-flex justify-content-end">
                         <button onClick={codeSubmit} className="btn btn-primary lead">Submit Code</button>
-                    </div>
+                    </div> : null}
                 </div>
             </div>
         </div>
