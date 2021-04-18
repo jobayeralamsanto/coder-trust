@@ -60,7 +60,7 @@ function ConfirmSignup() {
             });
             console.log(err.data);
         })
-    })
+    }, [])
 
     const cls = useStyles();
     return (

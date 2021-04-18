@@ -105,6 +105,7 @@ const Register = (props) => {
   const handleRegister = (e) => {
     e.preventDefault();
     setLoading(true);
+    console.log(name, medium, email, phone, password, role)
 
     setMessage("");
     setSuccessful(false);
@@ -112,7 +113,7 @@ const Register = (props) => {
     form.current.validateAll();
 
     if (checkBtn.current.context._errors.length === 0) {
-      AuthService.register(name,medium, email,phone, password,role).then(
+      AuthService.register(name, medium, email, phone, password, role).then(
         (response) => {
           setMessage(response.data.message);
           setSuccessful(true);
@@ -125,7 +126,7 @@ const Register = (props) => {
               error.response.data.message) ||
             error.message ||
             error.toString();
-            setLoading(true);
+            setLoading(false);
 
           setMessage(resMessage);
           setSuccessful(false);

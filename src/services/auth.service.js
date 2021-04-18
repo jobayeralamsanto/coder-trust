@@ -2,12 +2,12 @@ import axios from "axios";
 
 const API_URL = "https://wu89z93mp4.execute-api.us-west-2.amazonaws.com/dev/authentication/";
 
-const register = (name,medium,email, phone, password,role) => {
+const register = (name, medium, email, phone, password, role) => {
   return axios.post(API_URL + "signup", {
     name,
     medium,
-    email,
     phone,
+    email,
     password,
     role,
   });
