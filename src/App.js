@@ -16,6 +16,9 @@ import Welcome from "./components/Welcome";
 import Forgetpassword from "./components/Forgetpassword";
 import ConfirmationCode from "./components/ConfirmationCode";
 import ConfirmSignup from "./components/ConfirmSignup";
+import EmailTemp from "./components/EmailTemp";
+import TemplateEmail from "./components/TemplateEmail";
+// import Dashboard from "./components/Dashboard";
 
 const App = () => {
   const [showModeratorBoard, setShowModeratorBoard] = useState(false);
@@ -51,6 +54,8 @@ const App = () => {
           <Route path="/confirm/:confirmationCode" component={Welcome} />
           <Route path="/confirmcode" component={ConfirmationCode} />
           <Route path="/profile" component={ConfirmSignup} />
+          <Route path="/emailtemp" component={EmailTemp} />
+          <Route path="/temporaryemail" component={TemplateEmail} />
         </Switch>
       </div>
     
