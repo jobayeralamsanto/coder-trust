@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Switch, Route, Link } from "react-router-dom";
+import { Switch, Route, Link, BrowserRouter } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./App.css";
 
@@ -16,6 +16,8 @@ import Welcome from "./components/Welcome";
 import Forgetpassword from "./components/Forgetpassword";
 import ConfirmationCode from "./components/ConfirmationCode";
 import ConfirmSignup from "./components/ConfirmSignup";
+import Dashboard from "./components/Dashboard";
+import { brown } from "@material-ui/core/colors";
 
 const App = () => {
   const [showModeratorBoard, setShowModeratorBoard] = useState(false);
@@ -39,10 +41,13 @@ const App = () => {
   return (
     
       <div className="container mt-3">
+        <BrowserRouter>
+        <React.Suspense fallback={<div>Loading...</div>}>
         <Switch>
           <Route exact path={["/", "/login"]} component={Login} />
           <Route exact path="/home" component={Home} />
           <Route exact path="/register" component={Register} />
+          <Route exact path="/dashboard" component={Dashboard} />
           <Route exact path="/forgetpassword" component={Forgetpassword} />
           {/* <Route exact path={["/profile", ]} component={Profile} /> */}
           <Route path="/user" component={BoardUser} />
@@ -52,6 +57,8 @@ const App = () => {
           <Route path="/confirmcode" component={ConfirmationCode} />
           <Route path="/profile" component={ConfirmSignup} />
         </Switch>
+        </React.Suspense>
+        </BrowserRouter>
       </div>
     
   );
