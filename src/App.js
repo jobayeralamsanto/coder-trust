@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Switch, Route, Link } from "react-router-dom";
+import { Switch, Route, Link, BrowserRouter } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./App.css";
 
@@ -16,9 +16,13 @@ import Welcome from "./components/Welcome";
 import Forgetpassword from "./components/Forgetpassword";
 import ConfirmationCode from "./components/ConfirmationCode";
 import ConfirmSignup from "./components/ConfirmSignup";
-import EmailTemp from "./components/EmailTemp";
 import TemplateEmail from "./components/TemplateEmail";
-// import Dashboard from "./components/Dashboard";
+import TemplateList from "./components/TemplateList";
+import CurrencyList from "./components/currency/CurrencyList";
+import CreateEditCurrency from "./components/currency/CreateEditCurrency";
+import TagList from "./components/tag/TagList";
+import CreateEditTag from "./components/tag/CreateEditTag";
+
 
 const App = () => {
   const [showModeratorBoard, setShowModeratorBoard] = useState(false);
@@ -41,22 +45,31 @@ const App = () => {
 
   return (
     
-      <div className="container mt-3">
+      <div className="container-fluid mt-3">
+        <BrowserRouter>
+        <React.Suspense fallback={<div>Loading...</div>}>
         <Switch>
           <Route exact path={["/", "/login"]} component={Login} />
           <Route exact path="/home" component={Home} />
           <Route exact path="/register" component={Register} />
           <Route exact path="/forgetpassword" component={Forgetpassword} />
-          {/* <Route exact path={["/profile", ]} component={Profile} /> */}
           <Route path="/user" component={BoardUser} />
           <Route path="/mod" component={BoardModerator} />
           <Route path="/admin" component={BoardAdmin} />
           <Route path="/confirm/:confirmationCode" component={Welcome} />
           <Route path="/confirmcode" component={ConfirmationCode} />
           <Route path="/profile" component={ConfirmSignup} />
-          <Route path="/emailtemp" component={EmailTemp} />
-          <Route path="/temporaryemail" component={TemplateEmail} />
+          <Route path="/templatelist/:id" component={TemplateEmail} />
+          <Route path="/templatelist" exact component={TemplateList} />
+          <Route path="/currencylist" exact component={CurrencyList} />
+          <Route path="/currencylist/:id/:status" component={CreateEditCurrency} />
+          <Route path="/currencylist/:create" component={CreateEditCurrency} />
+          <Route path="/taglist" exact component={TagList} />
+          <Route path="/taglist/:pk/:sk" exact component={CreateEditTag} />
+          <Route path="/taglist/:create" exact component={CreateEditTag} />
         </Switch>
+        </React.Suspense>
+        </BrowserRouter>
       </div>
     
   );
